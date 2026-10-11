@@ -33,3 +33,15 @@
 ## 阅读方法
 
 每次只回答三个问题：输入如何存储？线程如何分工？中间数据在哪里复用？先画出一个小尺寸例子，再读指令和模板。上游性能图仅说明其记录的设备和环境，不作为本仓库的成绩。
+
+## GEMM 与 Attention 理论选读
+
+| 资料 | 对应内容 |
+| --- | --- |
+| [CUTLASS Efficient GEMM](https://docs.nvidia.com/cutlass/latest/media/docs/cpp/efficient_gemm.html) | 多层分块、数据复用与不同尺寸 |
+| [CUTLASS Pipeline](https://docs.nvidia.com/cutlass/latest/media/docs/cpp/pipeline.html) | 缓冲区可读与可写的等待 |
+| [CuTe MMA](https://docs.nvidia.com/cutlass/latest/media/docs/cpp/cute/0t_mma_atom.html) | 线程和矩阵元素的对应 |
+| [Online Softmax](https://arxiv.org/abs/1805.02867) | 逐步更新最大值和分母 |
+| [FlashAttention](https://arxiv.org/abs/2205.14135) | 减少中间结果的显存读写 |
+| [FlashAttention-2](https://arxiv.org/abs/2307.08691) | 工作分配与并行组织 |
+| [FlashAttention-3 作者说明](https://tridao.me/blog/2024/flash3/) | Hopper 异步执行与计算重叠 |

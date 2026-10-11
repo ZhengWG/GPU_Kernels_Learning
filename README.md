@@ -4,7 +4,7 @@
 
 面向会基本 Python、没有写过 GPU 算子、对 C++ 不熟悉的同学。通过图解、完整代码和可复现实验，学习数据如何移动、线程如何分工，以及代码为什么变快。
 
-> 当前状态：已建立课程骨架，并补充可阅读的背景知识、原理图与自测题。完整算子实验、交互演示和 GPU 实测结果尚未提供。
+> 当前状态：已补充背景知识、GEMM / Attention 理论、原理图、自测题和纯 Python 数学检查。当前没有实际 GPU 环境，优先完善理论；完整 CUDA 实验、交互演示和 GPU 实测结果尚未提供。
 
 ## 学完能做什么
 
@@ -53,6 +53,20 @@ flowchart TD
 
 内容参考 NVIDIA 官方文档、PyTorch 官方说明及 GitHub 代码资料。按章节选读的来源见 [资料导航](docs/references.md)。
 
+## 当前没有 GPU，也可以继续学
+
+- [GEMM 分块与流水线](lessons/03-gemm/README.md)：理解复用、Tensor Core 与等待关系。
+- [Attention 逐块计算](lessons/04-attention/README.md)：手算 Softmax 更新和输出累加。
+- [经典算子的计算方式](lessons/02-hardware-and-profiling/operator-patterns.md)：归约、前缀和、归一化与融合。
+
+从仓库根目录运行，只需 Python 标准库：
+
+```bash
+python3 tools/check_theory.py
+```
+
+该脚本检查分块数学结果，不模拟 GPU，也不输出性能成绩。
+
 ## 如何学习一节课
 
 每节课围绕一个主要问题展开：
@@ -75,7 +89,7 @@ flowchart TD
 | --- | --- | --- |
 | H20 主线 | 基础算子、GEMM、Attention、数据搬运与计算重叠 | 待实现、待实际设备验证 |
 | B 系列扩展 | 对应硬件能力、实现差异与上游案例 | 待选定具体型号、待验证 |
-| 无 GPU 学习 | 图解、Python 参考实现、浏览器交互演示 | 待提供；不能代替 GPU 验证 |
+| 无 GPU 学习 | 图解、自测、Python 数学检查 | 已提供初版；浏览器交互演示待补 |
 
 硬件资料将分别记录官方参数和本机实测值，包含具体型号、来源、核验日期与软件环境。见 [硬件入口](docs/hardware/README.md)。
 
@@ -181,7 +195,9 @@ GPU_Kernels_Learning/
 - [x] 确定读者、硬件主线与教学方式。
 - [x] 建立 README、课程入口与目录骨架。
 - [x] 补充背景知识初版：图解、自测与官方/代码资料导航。
-- [ ] 完成 vector add 图解样章，贯通 Python → C++ → CUDA → 验证与计时。
+- [x] 补充 GEMM / Attention 理论初版与 CPU 数学检查。
+- [ ] 深化线程布局、数值精度和固定版本源码解读。
+- [ ] 完成 vector add 图解样章；GPU 可用后补齐 CUDA 验证与计时。
 - [ ] 在实际 H20 上验证环境，记录设备参数。
 - [ ] 完成转置、归约和 Softmax 基础实验。
 - [ ] 完成 GEMM 优化链与 Attention 前向主线。
