@@ -31,12 +31,18 @@ def main():
     args = parser.parse_args()
     if hashlib.sha256(args.mermaid_js.read_bytes()).hexdigest() != BUNDLE_SHA:
         raise SystemExit("Unexpected Mermaid bundle: use the documented version and checksum")
-    sources = sorted(ROOT.rglob("*.mmd"))
+    sources = [source for source in sorted(ROOT.rglob("*.mmd"))
+               if not source.with_suffix(".svg").exists()
+               or f"source-sha256: {digest(source)}" not in source.with_suffix(".svg").read_text()]
+    if not sources:
+        print("All diagrams are current.")
+        return
     config = json.loads(CONFIG.read_text())
     config["startOnLoad"] = False
     with tempfile.TemporaryDirectory(prefix="cuda-diagrams-") as tmp:
         folder = Path(tmp)
         page = folder / "render.html"
+        source_hashes = [digest(source) for source in sources]
         scripts = json.dumps([source.read_text() for source in sources], ensure_ascii=False)
         # Avoid treating diagram labels as executable HTML.
         scripts = scripts.replace("<", "\\u003c")
@@ -96,11 +102,11 @@ def main():
         svgs = result["svgs"]
         if len(svgs) != len(sources):
             raise RuntimeError("Some diagrams were not rendered")
-        for source, svg in zip(sources, svgs):
+        for source, svg, source_hash in zip(sources, svgs, source_hashes):
             if "<foreignObject" in svg or "<script" in svg:
                 raise ValueError(f"Unsupported SVG content in {source}")
             target = source.with_suffix(".svg")
-            target.write_text(svg + f"\n<!-- source-sha256: {digest(source)} -->\n")
+            target.write_text(svg + f"\n<!-- source-sha256: {source_hash} -->\n")
             print(target.relative_to(ROOT))
 
 

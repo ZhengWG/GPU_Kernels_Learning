@@ -23,6 +23,8 @@ python3 tools/render_diagrams.py --mermaid-js /path/to/mermaid.min.js --browser 
 python3 tools/check_docs.py
 ```
 
+脚本只生成缺失或图源/配置已变化的 SVG，保留其他图，避免无关改动。
+
 这些额外工具仅供维护者绘图，读者阅读和运行 CPU 检查不需要安装。检查脚本确认本地链接、SVG 格式和图源摘要，视觉检查还需查看导出的图片。
 
 固定渲染文件：[mermaid.min.js 10.9.1](https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js)。SHA-256：`61b335a46df05a7ce1c98378f60e5f3e77a7fb608a1056997e8a649304a936d6`。下载放在仓库外，脚本核对摘要；不需要安装 npm 依赖。

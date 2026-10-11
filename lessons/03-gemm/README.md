@@ -11,3 +11,5 @@
 完成标准：画出一个输出块需要哪些输入，计算一轮数据量，解释缓冲区何时可覆盖。无需 GPU。
 
 运行 `python3 tools/check_theory.py` 与 `python3 tools/check_patterns.py`，检查数学与索引例子；它们不模拟 GPU 硬件。
+
+选择分块前完成 [硬件资源预算](../../docs/hardware/resource-budget.md)，同时检查共享内存、寄存器和网格块数。
