@@ -22,10 +22,15 @@
 5. 运行 `python3 tools/check_theory.py`，在 CPU 上验证公式与边界。
 6. 阅读线程布局、低精度、RoPE、GQA 与反向章节，运行 `python3 tools/check_patterns.py` 和 `python3 tools/check_attention_backward.py`。
 7. 按 [固定版本案例](../case_studies/README.md) 跟踪源码，完成 [无 GPU 综合作业](../lessons/05-capstone/README.md)。
-8. GPU 可用后再锁定环境、实现并测量。
+8. 完成 [资源预算](hardware/resource-budget.md) 与 [经典算子逐步推导](../lessons/02-hardware-and-profiling/README.md)，运行两份配套 CPU 检查。
+9. GPU 可用后再锁定环境、实现并测量。
 
 CPU 检查不能发现 CUDA 读写冲突，也不验证吞吐量；理论完成与 GPU 验证分别记录。
 
 H20 为实际验证主线。B 系列课程独立声明具体型号和验证状态。没有相应 GPU 时可以阅读原理，不能声称完成性能复现。
 
 返回 [项目首页](../README.md)。
+
+## 尚待展开的理论
+
+本轮已补资源预算、转置、归一化和融合。理论部分尚未全部完成：变长/分页 KV cache、跨块 Attention 合并、掩码与 GQA 反向，以及 Hopper/B 系列具体异步指令与同步配合，仍需后续章节。

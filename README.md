@@ -46,6 +46,7 @@
 - [GEMM 分块与流水线](lessons/03-gemm/README.md)：理解复用、Tensor Core 与等待关系。
 - [Attention 逐块计算](lessons/04-attention/README.md)：手算 Softmax 更新和输出累加。
 - [经典算子的计算方式](lessons/02-hardware-and-profiling/operator-patterns.md)：归约、前缀和、归一化与融合。
+- [资源预算](docs/hardware/resource-budget.md)与[经典算子逐步推导](lessons/02-hardware-and-profiling/README.md)：手算优化收益与代价。
 - [固定版本源码阅读](case_studies/README.md)：DeepGEMM、FlashAttention、SOLAR 与 KDA 案例。
 
 从仓库根目录运行，只需 Python 标准库：
@@ -54,10 +55,12 @@
 python3 tools/check_theory.py
 python3 tools/check_patterns.py
 python3 tools/check_attention_backward.py
+python3 tools/check_resource_budget.py
+python3 tools/check_classic_operators.py
 python3 tools/check_docs.py
 ```
 
-前三个脚本检查数学与索引结果，最后一个检查文档和图源；均不模拟 GPU，也不输出性能成绩。
+前五个脚本检查数学、索引和资源估算，最后一个检查文档和图源；均不模拟 GPU，也不输出性能成绩。
 
 ## 如何学习一节课
 
@@ -191,6 +194,7 @@ GPU_Kernels_Learning/
 - [x] 补充线程布局、低精度、RoPE、归约与前缀和理论。
 - [x] 补充 GQA、Decode 和最简 Attention 反向推导。
 - [x] 建立固定版本源码阅读初版与无 GPU 综合作业。
+- [x] 补齐资源预算、转置、归一化与融合的逐步推导和 CPU 验证。
 - [ ] 完成 vector add 图解样章；GPU 可用后补齐 CUDA 验证与计时。
 - [ ] 在实际 H20 上验证环境，记录设备参数。
 - [ ] 完成转置、归约和 Softmax 基础实验。

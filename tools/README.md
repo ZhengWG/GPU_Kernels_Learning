@@ -19,3 +19,14 @@ python3 tools/check_theory.py
 [check_docs.py](check_docs.py) 检查本地文档链接、代码块和 SVG 图源是否同步，运行 `python3 tools/check_docs.py`。
 
 [render_diagrams.py](render_diagrams.py) 使用固定版本 Mermaid 10.9.1 浏览器文件生成静态 SVG，配置见 [mermaid-config.json](mermaid-config.json)。仅绘图维护需要外部工具，CPU 检查没有第三方依赖。
+
+[check_resource_budget.py](check_resource_budget.py) 复算三个分块候选、驻留块上界和尾块比例。预算是教学假设，没有检测 H20，也没有实现完整硬件资源计算器。
+
+[check_classic_operators.py](check_classic_operators.py) 演示分阶段转置、两遍/分组归一化与融合；用 Decimal 独立参考检查数值，覆盖尾块、行填充、常数行和中间 FP32 舍入。运行：
+
+```bash
+python3 tools/check_resource_budget.py
+python3 tools/check_classic_operators.py
+```
+
+检查全部采用固定输入或随机种子。不要用 `python -O` 运行这些教学检查，因为它会禁用断言。

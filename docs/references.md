@@ -47,3 +47,5 @@
 | [FlashAttention-3 作者说明](https://tridao.me/blog/2024/flash3/) | Hopper 异步执行与计算重叠 |
 
 进阶来源：[CuTe Layouts](https://docs.nvidia.com/cutlass/latest/media/docs/cpp/cute/01_layout.html)、[Transformer Engine FP8/FP4](https://docs.nvidia.com/deeplearning/transformer-engine-releases/release-2.13/user-guide/examples/fp8_primer.html)、[RoFormer](https://arxiv.org/abs/2104.09864)、[GQA](https://arxiv.org/abs/2305.13245)。
+
+资源与经典算子深化：[执行配置与资源限制](https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#execution-configuration-optimizations)、[NVIDIA 转置教程](https://developer.nvidia.com/blog/efficient-matrix-transpose-cuda-cc/)、[LayerNorm](https://docs.pytorch.org/docs/2.14/generated/torch.nn.LayerNorm.html)、[RMSNorm](https://docs.pytorch.org/docs/2.14/generated/torch.nn.RMSNorm.html)。本轮核对日期：2026-10-11。
