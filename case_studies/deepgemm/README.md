@@ -37,3 +37,5 @@
 画出一个 K 分块从输入到最终累加结果的路径，标出两次等待和缩放位置；解释为什么去掉等待或把所有缩放挪到最后会影响正确性。
 
 本页是独立讲解与源码链接，没有复制上游实现。上游许可证见 [固定版本 LICENSE](https://github.com/deepseek-ai/DeepGEMM/blob/057ca5964aae0879ff2e0eb71ee05a3cb0ba3df7/LICENSE)。
+
+线程布局、任务循环和寄存器分配的答案示例见 [逐段阅读](../architecture-walkthrough.md)。

@@ -14,3 +14,5 @@
 来源：[NVIDIA GPU 计算能力表](https://developer.nvidia.com/cuda/gpus)，访问日期 2026-10-11。计算能力是功能版本，不表示相对速度。
 
 扩展时先确认编译兼容，再检查共享内存、寄存器与块分组限制，最后分析矩阵计算和搬运方式。B200 的参数不能自动用于所有 Blackwell 设备。[Blackwell Tuning Guide](https://docs.nvidia.com/cuda/blackwell-tuning-guide/index.html)
+
+课程选择 [SM100 矩阵计算](blackwell-matmul.md) 作为具体理论路径，解释 TMEM、单/双块参与和完成条件；不据此宣称所有 B 系列已验证。

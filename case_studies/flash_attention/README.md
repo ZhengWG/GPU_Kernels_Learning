@@ -40,4 +40,13 @@
 
 找到源码中同时修正分母和输出的两行，再解释为何分母的跨线程合并可以安排到最终归一化阶段。答案应涉及“什么时候需要完整分母”，而不是只翻译变量名。
 
+<details>
+<summary>自测答案</summary>
+
+`softmax_rescale_o` 中 `row_sum` 与 `acc_o_rowcol` 都乘 `scores_scale`。中间轮次先保留各线程的局部分母即可，只要它们使用一致的行最大值和缩放标准；最终除法前，`normalize_softmax_lse` 用 `quad_allreduce_` 合并分母。不能省略最终合并。
+
+</details>
+
+Hopper 与 SM100 的线程分工和交接详解见 [架构逐段阅读](../architecture-walkthrough.md)。
+
 许可证见 [仓库 LICENSE](https://github.com/Dao-AILab/flash-attention/blob/94e22c906678e5483fa0e9e24d8e787bc2c0ed4c/LICENSE) 与 [CuTe 目录 LICENSE](https://github.com/Dao-AILab/flash-attention/blob/94e22c906678e5483fa0e9e24d8e787bc2c0ed4c/flash_attn/cute/LICENSE)。本页仅讲解并链接。
