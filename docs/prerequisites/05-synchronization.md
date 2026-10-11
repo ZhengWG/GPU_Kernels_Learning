@@ -2,17 +2,9 @@
 
 **发出任务、任务开始、任务完成，是三个不同时间点。**
 
-```mermaid
-sequenceDiagram
-    participant CPU
-    participant GPU
-    CPU->>GPU: 启动 kernel
-    Note over CPU: 可以继续执行 CPU 代码
-    Note over GPU: 执行线程计算
-    CPU->>GPU: 等待完成
-    GPU-->>CPU: 计算已完成
-    Note over CPU: 此后才可依赖结果完成状态
-```
+![原理图：05-synchronization，第 1 幅](figures/05-synchronization-01.svg)
+
+[图源](figures/05-synchronization-01.mmd)
 
 原理示意。只在 CPU 上测“启动调用用了多久”，通常测不到完整的 GPU 计算时间。[NVIDIA 异步执行](https://docs.nvidia.com/cuda/cuda-programming-guide/02-basics/asynchronous-execution.html)
 

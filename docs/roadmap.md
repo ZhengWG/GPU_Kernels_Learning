@@ -20,7 +20,9 @@
 3. 阅读 [GEMM 理论](../lessons/03-gemm/README.md)，画出数据复用和缓冲区使用顺序。
 4. 阅读 [Attention 理论](../lessons/04-attention/README.md)，手算逐块 Softmax 与加权输出。
 5. 运行 `python3 tools/check_theory.py`，在 CPU 上验证公式与边界。
-6. 后续补充更细的线程布局、数值精度与固定版本源码解读；GPU 可用后再锁定环境、实现并测量。
+6. 阅读线程布局、低精度、RoPE、GQA 与反向章节，运行 `python3 tools/check_patterns.py` 和 `python3 tools/check_attention_backward.py`。
+7. 按 [固定版本案例](../case_studies/README.md) 跟踪源码，完成 [无 GPU 综合作业](../lessons/05-capstone/README.md)。
+8. GPU 可用后再锁定环境、实现并测量。
 
 CPU 检查不能发现 CUDA 读写冲突，也不验证吞吐量；理论完成与 GPU 验证分别记录。
 

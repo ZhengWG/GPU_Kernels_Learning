@@ -1,0 +1,13 @@
+flowchart TD
+    A["会基本 Python"] --> B["C++ 必要语法与张量索引"]
+    B --> C["第一个 CUDA 算子：向量相加"]
+    C --> D["GPU 硬件、正确性检查与计时"]
+    D --> E["矩阵转置：理解数据搬运"]
+    D --> F["归约与 Softmax：理解协作计算"]
+    E --> G["GEMM：从直接计算到分块与流水线"]
+    F --> H["Attention：从分步计算到分块融合"]
+    G --> H
+    G --> I["DeepGEMM 源码案例"]
+    H --> J["FlashAttention 源码案例"]
+    I --> K["B 系列扩展与综合实践"]
+    J --> K

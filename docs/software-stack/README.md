@@ -4,15 +4,9 @@
 
 ## 一次调用经过哪里
 
-```mermaid
-flowchart TD
-    P[Python 测试脚本] --> T[PyTorch 张量与算子调用]
-    T --> L[成熟库或已编译的实现]
-    T --> E[自定义 C++ / CUDA 扩展]
-    L --> R[CUDA 运行接口与驱动]
-    E --> R
-    R --> G[GPU 执行 kernel]
-```
+![原理图：README，第 1 幅](figures/readme-01.svg)
+
+[图源](figures/readme-01.mmd)
 
 原理示意：调用 PyTorch 算子不等于现场编译一份 `.cu`；具体后端取决于算子和执行方式。
 
@@ -28,14 +22,9 @@ CUDA Runtime API 是常用的较高层接口，底层还有 Driver API。课程�
 
 ## 编译时发生什么
 
-```mermaid
-flowchart LR
-    S[CUDA C++ 源文件] --> N[nvcc 协调编译]
-    N --> H[CPU 代码交给主机编译器]
-    N --> D[GPU 代码编译为设备代码]
-    H --> O[可执行程序或扩展库]
-    D --> O
-```
+![原理图：README，第 2 幅](figures/readme-02.svg)
+
+[图源](figures/readme-02.mmd)
 
 原理示意。PTX 是 GPU 的中间指令形式；最终执行的是面向具体设备的机器代码。构建产物可以包含设备机器代码及 PTX，驱动在适用情况下进一步编译 PTX。目标架构设置会影响代码是否能运行、能使用哪些特性，不能只改一个架构名字就假定移植完成。[NVIDIA NVCC 指南](https://docs.nvidia.com/cuda/cuda-programming-guide/02-basics/nvcc.html)
 

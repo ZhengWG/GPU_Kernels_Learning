@@ -4,16 +4,9 @@
 
 ## 阅读顺序
 
-```mermaid
-flowchart LR
-    A[1. 指针与 C++ 语法] --> B[2. 张量在内存中怎么放]
-    B --> C[3. 矩阵乘法与 Attention]
-    C --> D[4. 浮点误差]
-    D --> E[5. GPU 线程怎么分工]
-    E --> F[6. 数据在哪里]
-    F --> G[7. 同步在等谁]
-    G --> H[8. 性能怎么判断]
-```
+![原理图：README，第 1 幅](figures/readme-01.svg)
+
+[图源](figures/readme-01.mmd)
 
 原理示意：这是推荐顺序，不是运行流程。
 

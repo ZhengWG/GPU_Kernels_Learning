@@ -1,0 +1,148 @@
+{
+  "reviewed_on": "2026-10-11",
+  "status": "source-reviewed; not built or GPU-tested",
+  "repositories": [
+    {
+      "repository": "deepseek-ai/DeepGEMM",
+      "commit": "057ca5964aae0879ff2e0eb71ee05a3cb0ba3df7",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "6c73a30c14a2938abaa6afe98ebb19e6d81dac5bd4ace0cb05c61c20afa37b85"
+        },
+        {
+          "path": "README.md",
+          "sha256": "1112521165450d617bf0ff0cc06d8944f7b4548ecf4727e1d16143671014a4d2"
+        },
+        {
+          "path": "csrc/apis/gemm.hpp",
+          "sha256": "7cfdbdcf9fcc524bc715bc744f49f74b8fbab4b91e590cf7eeb3c0946d35770d"
+        },
+        {
+          "path": "csrc/jit_kernels/impls/sm90_fp8_gemm_1d2d.hpp",
+          "sha256": "9034410635d599c5c1d9fb95a33bec499d063580981ac25a5634899454c2a6aa"
+        },
+        {
+          "path": "deep_gemm/include/deep_gemm/common/ring_pipeline.cuh",
+          "sha256": "d231e0ceb5e41d3128a82b3e326b6cfc5c46b58013edf0bfd48bf1704859711e"
+        },
+        {
+          "path": "deep_gemm/include/deep_gemm/impls/sm90_fp8_gemm_1d2d.cuh",
+          "sha256": "fe9a88b1a2cca65beebb3ea6103bbb5224c448c3a27d8351de1e3fc4baff787e"
+        },
+        {
+          "path": "tests/test_fp8_fp4.py",
+          "sha256": "3f0f930f31948306cdc6cae989bf61c51b4b8d04e49df54da40cc7d0109e0c5a"
+        }
+      ]
+    },
+    {
+      "repository": "Dao-AILab/flash-attention",
+      "commit": "94e22c906678e5483fa0e9e24d8e787bc2c0ed4c",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "8c9ccb96c065e706135b6cbad279b721da6156e51f3a5f27c6b3329af9416d73"
+        },
+        {
+          "path": "csrc/flash_attn/src/flash_fwd_kernel.h",
+          "sha256": "9b31cdff4009fcd0e1bc52f9b97907d226442db24e0a150d8dfed0711ee64dda"
+        },
+        {
+          "path": "csrc/flash_attn/src/softmax.h",
+          "sha256": "77e70b8d0dbe72f459ced29199a554a0d1e0559cad2370a2e5b5f1fa5faf73f1"
+        },
+        {
+          "path": "flash_attn/cute/LICENSE",
+          "sha256": "8c9ccb96c065e706135b6cbad279b721da6156e51f3a5f27c6b3329af9416d73"
+        },
+        {
+          "path": "flash_attn/cute/flash_fwd_sm100.py",
+          "sha256": "c8cbc40b97c9f2a8fa5ce3da5dbe4f0eb80787158f1e4398889ca02572ec1cdb"
+        },
+        {
+          "path": "flash_attn/cute/interface.py",
+          "sha256": "13979004316b64ee92845f6701e46222044e64836b22540c9c8990a11ec77b40"
+        },
+        {
+          "path": "flash_attn/cute/softmax.py",
+          "sha256": "aaddf3030dba7b9809c4fefae3caab22d0f22b9ecf5050601d6646aefb611a49"
+        },
+        {
+          "path": "hopper/mainloop_fwd_sm90_tma_gmma_ws.hpp",
+          "sha256": "4c39acafad4acc8931a873037c223dfc6ecfd1ede3af38c75ef3608acac8afdb"
+        }
+      ]
+    },
+    {
+      "repository": "NVlabs/SOLAR",
+      "commit": "8f6e76c1912213e82756217e92d147aedd010f7a",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "43070e2d4e532684de521b885f385d0841030efa2b1a20bafb76133a5e1379c1"
+        },
+        {
+          "path": "configs/arch/B200.yaml",
+          "sha256": "1c4e666fdaa3402f97a56264cef4d9ebcb7dab5cb4303504fef3078ed313b026"
+        },
+        {
+          "path": "docs/SOL_GUIDE.md",
+          "sha256": "e3a1f2a3beb5734bd342cfa1ae53ca95336f441009384bbc91155414791909a9"
+        },
+        {
+          "path": "examples/Matmul/Matmul.py",
+          "sha256": "4bd8440f7f9096bcac8265db363ba7bab56834c6f2da747c95647b0cd013965d"
+        },
+        {
+          "path": "solar/perf/perf_model.py",
+          "sha256": "9ecfc83c3ce18f7a6278bdad6b92f4af4a783b9f7e6839cca809ac3c886df20f"
+        }
+      ]
+    },
+    {
+      "repository": "NVlabs/kda",
+      "commit": "ef6ce617693ef0782b3ecb9f37e39bbf10226a90",
+      "files": [
+        {
+          "path": "LICENSE",
+          "sha256": "79a6a78693f4e02b1f43837ceb014aefda32d319e4298425c7314465c26abe23"
+        },
+        {
+          "path": "README.md",
+          "sha256": "b2a3f7ed36ff98e874600e161f061b2c8b1588cc31746406900f15f8273b90d6"
+        },
+        {
+          "path": "docs/agent-flow.md",
+          "sha256": "c0bf00c893197cbcebdb8dbbbe742c0fd4b51ac7b34e5bab5c3ea4cd94cdb7de"
+        },
+        {
+          "path": "prompts/basic-flow.md",
+          "sha256": "0ccd7f7c2a8a09bc1eaca287eb3c0026a99db7033a1a032d50c17f8cff96d038"
+        }
+      ]
+    },
+    {
+      "repository": "BBuf/KDA-Pilot",
+      "commit": "bac966ba09fe22f6220ff527c7c3555e539d5fe6",
+      "files": [
+        {
+          "path": "diffusion/docs/diffusion_correctness_contract.md",
+          "sha256": "c91d4669ebe28c4e410a87a9ff6b85f580e14139832793fe1b5f2dd4cc139cbb"
+        },
+        {
+          "path": "diffusion/docs/standalone_diffusion_benchmark.md",
+          "sha256": "c3c24a62356f0315270374217ef8cbfdbb83d60a2f94c6826a8fcb2bae7084d8"
+        },
+        {
+          "path": "diffusion/kernels/b200_diffusion_attention_concat_copy__multi_model/bench/correctness.py",
+          "sha256": "b47cdb33546941cd814e243894cb153f32d1c71112530db8bc176604cf7e145e"
+        },
+        {
+          "path": "diffusion/kernels/b200_diffusion_attention_concat_copy__multi_model/docs/benchmark_method.md",
+          "sha256": "83ed324510b32a4ece0e7a7082bae9ab11512ffb0bc5a958a0d584c07c284da6"
+        }
+      ]
+    }
+  ]
+}

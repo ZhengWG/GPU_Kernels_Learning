@@ -4,18 +4,9 @@
 
 ## 中间数据去了哪里
 
-```mermaid
-flowchart TD
-    A[普通分步实现] --> B[算完整 QK 转置]
-    B --> C[保存完整分数矩阵]
-    C --> D[计算并保存完整权重矩阵]
-    D --> E[权重乘 V 得到输出]
-    F[分块融合实现] --> G[取一块 Q 和一块 K、V]
-    G --> H[算小块分数并更新行统计与输出累加值]
-    H --> I{还有 K、V 块吗}
-    I -->|有| G
-    I -->|没有| J[归一化并写出最终结果]
-```
+![原理图：02-tiled-attention，第 1 幅](figures/02-tiled-attention-01.svg)
+
+[图源](figures/02-tiled-attention-01.mmd)
 
 原理示意：小块分数仍需计算，只是不必把完整分数与权重写到显存。FlashAttention 的关键是减少中间数据的显存读写，标准稠密 Attention 的计算量仍随序列长度近似平方增长。[FlashAttention 论文](https://arxiv.org/abs/2205.14135)
 

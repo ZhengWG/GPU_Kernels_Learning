@@ -24,19 +24,9 @@ GEMM 的式子是理想复用假设；真实 kernel 会重复读数据，缓存�
 
 ## 由现象决定下一步
 
-```mermaid
-flowchart TD
-    A[正确性已通过] --> B[测多组输入与前一版本]
-    B --> C{观察主要耗时}
-    C --> D[很多很短的任务：检查启动与 CPU 调度]
-    C --> E[大量搬运：检查连续读写与重复读取]
-    C --> F[计算阶段长：检查指令路径与数据复用]
-    C --> G[都有空闲：检查依赖、同步与可并行工作]
-    D --> H[一次修改后重新测量]
-    E --> H
-    F --> H
-    G --> H
-```
+![原理图：performance-basics，第 1 幅](figures/performance-basics-01.svg)
+
+[图源](figures/performance-basics-01.mmd)
 
 原理示意：这些是排查方向，不能仅凭算子名字确定瓶颈。
 

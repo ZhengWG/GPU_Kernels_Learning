@@ -51,15 +51,9 @@ Softmax 包含求最大值、求和以及逐元素计算，这就是 Attention �
 
 暂时只看一个头、一次前向计算，不含 dropout：
 
-```mermaid
-flowchart LR
-    Q["Q：Lq × D"] --> S["分数 Q × K转置 / sqrt(D)"]
-    K["K：Lk × D"] --> S
-    S --> M[屏蔽不能看的位置]
-    M --> P[按每一行计算 Softmax]
-    P --> O["权重 × V：Lq × Dv"]
-    V["V：Lk × Dv"] --> O
-```
+![原理图：03-math-for-kernels，第 1 幅](figures/03-math-for-kernels-01.svg)
+
+[图源](figures/03-math-for-kernels-01.mmd)
 
 原理示意：一行 Q 对所有 K 打分，再用这些权重合并 V。分数矩阵大小是 `Lq × Lk`；当两者都随序列增长时，中间存储增长很快。
 

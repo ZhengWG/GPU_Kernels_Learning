@@ -2,17 +2,9 @@
 
 **程序创建很多线程，硬件分批执行它们。**
 
-```mermaid
-flowchart TD
-    G[grid：一次启动的全部块] --> B0[block 0]
-    G --> B1[block 1]
-    G --> B2[其他块]
-    B0 --> W0[warp 0：线程 0 到 31]
-    B0 --> W1[warp 1：线程 32 到 63]
-    B0 -.安排到.-> S0[SM：执行计算的硬件单元]
-    B1 -.也可以安排到.-> S0
-    B2 -.安排到.-> S1[其他 SM]
-```
+![原理图：execution，第 1 幅](figures/execution-01.svg)
+
+[图源](figures/execution-01.mmd)
 
 原理示意，图中每块选用 64 个线程。一块的线程在同一 SM 上执行；资源允许时，同一 SM 可以容纳多个块。warp 是块内 32 个线程组成的执行分组。块的执行先后通常没有保证。[NVIDIA 编程模型](https://docs.nvidia.com/cuda/cuda-programming-guide/01-introduction/programming-model.html)
 

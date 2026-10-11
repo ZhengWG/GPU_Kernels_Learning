@@ -2,15 +2,9 @@
 
 **同一个数能在近处重复使用，就少一次远处读取的需要。**
 
-```mermaid
-flowchart LR
-    H[CPU 内存] <-->|跨设备传输| D[GPU 显存]
-    D <--> L2[L2 缓存]
-    L2 <--> L1[SM 附近的 L1 缓存]
-    L1 <--> R[寄存器：线程自己的值]
-    L2 -->|搬入供线程协作使用| S[共享内存]
-    S <--> R
-```
+![原理图：memory，第 1 幅](figures/memory-01.svg)
+
+[图源](figures/memory-01.mmd)
 
 原理示意：表示用途与数据流，不是所有指令都经过每个框；具体路径随指令和架构变化。L1/L2 主要由硬件管理，共享内存由程序明确安排读写。[NVIDIA 编程模型](https://docs.nvidia.com/cuda/cuda-programming-guide/01-introduction/programming-model.html#gpu-memory)
 

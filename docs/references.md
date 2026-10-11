@@ -45,3 +45,5 @@
 | [FlashAttention](https://arxiv.org/abs/2205.14135) | 减少中间结果的显存读写 |
 | [FlashAttention-2](https://arxiv.org/abs/2307.08691) | 工作分配与并行组织 |
 | [FlashAttention-3 作者说明](https://tridao.me/blog/2024/flash3/) | Hopper 异步执行与计算重叠 |
+
+进阶来源：[CuTe Layouts](https://docs.nvidia.com/cutlass/latest/media/docs/cpp/cute/01_layout.html)、[Transformer Engine FP8/FP4](https://docs.nvidia.com/deeplearning/transformer-engine-releases/release-2.13/user-guide/examples/fp8_primer.html)、[RoFormer](https://arxiv.org/abs/2104.09864)、[GQA](https://arxiv.org/abs/2305.13245)。

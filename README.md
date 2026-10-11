@@ -15,21 +15,9 @@
 
 ## 学习路线
 
-```mermaid
-flowchart TD
-    A[会基本 Python] --> B[C++ 必要语法与张量索引]
-    B --> C[第一个 CUDA 算子：向量相加]
-    C --> D[GPU 硬件、正确性检查与计时]
-    D --> E[矩阵转置：理解数据搬运]
-    D --> F[归约与 Softmax：理解协作计算]
-    E --> G[GEMM：从直接计算到分块与流水线]
-    F --> H[Attention：从分步计算到分块融合]
-    G --> H
-    G --> I[DeepGEMM 源码案例]
-    H --> J[FlashAttention 源码案例]
-    I --> K[B 系列扩展与综合实践]
-    J --> K
-```
+![原理图：README，第 1 幅](figures/readme-01.svg)
+
+[图源](figures/readme-01.mmd)
 
 图中 GEMM 指矩阵乘法；归约指把一组数合成一个结果，例如求和；Softmax 把一组分数转换为和为 1 的权重。其余必要名称在对应章节首次出现时配图解释。
 
@@ -58,14 +46,18 @@ flowchart TD
 - [GEMM 分块与流水线](lessons/03-gemm/README.md)：理解复用、Tensor Core 与等待关系。
 - [Attention 逐块计算](lessons/04-attention/README.md)：手算 Softmax 更新和输出累加。
 - [经典算子的计算方式](lessons/02-hardware-and-profiling/operator-patterns.md)：归约、前缀和、归一化与融合。
+- [固定版本源码阅读](case_studies/README.md)：DeepGEMM、FlashAttention、SOLAR 与 KDA 案例。
 
 从仓库根目录运行，只需 Python 标准库：
 
 ```bash
 python3 tools/check_theory.py
+python3 tools/check_patterns.py
+python3 tools/check_attention_backward.py
+python3 tools/check_docs.py
 ```
 
-该脚本检查分块数学结果，不模拟 GPU，也不输出性能成绩。
+前三个脚本检查数学与索引结果，最后一个检查文档和图源；均不模拟 GPU，也不输出性能成绩。
 
 ## 如何学习一节课
 
@@ -196,7 +188,9 @@ GPU_Kernels_Learning/
 - [x] 建立 README、课程入口与目录骨架。
 - [x] 补充背景知识初版：图解、自测与官方/代码资料导航。
 - [x] 补充 GEMM / Attention 理论初版与 CPU 数学检查。
-- [ ] 深化线程布局、数值精度和固定版本源码解读。
+- [x] 补充线程布局、低精度、RoPE、归约与前缀和理论。
+- [x] 补充 GQA、Decode 和最简 Attention 反向推导。
+- [x] 建立固定版本源码阅读初版与无 GPU 综合作业。
 - [ ] 完成 vector add 图解样章；GPU 可用后补齐 CUDA 验证与计时。
 - [ ] 在实际 H20 上验证环境，记录设备参数。
 - [ ] 完成转置、归约和 Softmax 基础实验。

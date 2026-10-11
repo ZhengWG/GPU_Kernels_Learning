@@ -1,0 +1,7 @@
+flowchart TD
+    P["Python 测试脚本"] --> T["PyTorch 张量与算子调用"]
+    T --> L["成熟库或已编译的实现"]
+    T --> E["自定义 C++ / CUDA 扩展"]
+    L --> R["CUDA 运行接口与驱动"]
+    E --> R
+    R --> G["GPU 执行 kernel"]

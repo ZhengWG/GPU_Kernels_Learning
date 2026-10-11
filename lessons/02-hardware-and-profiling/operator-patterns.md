@@ -48,13 +48,9 @@ RMSNorm:
 
 两者都先求行统计量，再逐元素变换。短行可以尝试让线程保留输入，减少第二次读取；长行若全部保留，会增加寄存器压力。LayerNorm 用 `mean(x^2)-mean(x)^2` 计算方差可能因相近大数相减丢失精度，不能只看计算步骤变少。
 
-```mermaid
-flowchart LR
-    A[读一行] --> B[协作计算统计量]
-    B --> C[等待统计量完成]
-    C --> D[归一化与缩放]
-    D --> E[写回]
-```
+![原理图：operator-patterns，第 1 幅](figures/operator-patterns-01.svg)
+
+[图源](figures/operator-patterns-01.mmd)
 
 原理示意。要先定义归一化的轴、累加精度、epsilon 位置以及是否有偏置，再比较结果。
 

@@ -6,12 +6,9 @@
 
 **它不是把普通乘法换个函数名，而是要求线程按约定组织数据。**
 
-```mermaid
-flowchart LR
-    A[逻辑矩阵小块] --> B[按指令要求安排各线程持有的数据]
-    B --> C[共同执行矩阵乘加]
-    C --> D[按约定取得结果并写回]
-```
+![原理图：02-tensor-core-and-pipeline，第 1 幅](figures/02-tensor-core-and-pipeline-01.svg)
+
+[图源](figures/02-tensor-core-and-pipeline-01.mmd)
 
 原理示意。矩阵乘加常写作 `D = A*B + C`，MMA 就是这个操作的简称。支持的矩阵形状、数据类型、存储位置和参与线程范围取决于具体指令；CuTe 用布局描述这些对应关系。[CuTe 矩阵乘加说明](https://docs.nvidia.com/cutlass/latest/media/docs/cpp/cute/0t_mma_atom.html)
 
@@ -34,13 +31,9 @@ flowchart LR
 
 ## 每个缓冲区都有使用顺序
 
-```mermaid
-flowchart LR
-    A[空闲] --> B[正在搬入]
-    B --> C[数据已就绪]
-    C --> D[计算正在使用]
-    D --> A
-```
+![原理图：02-tensor-core-and-pipeline，第 2 幅](figures/02-tensor-core-and-pipeline-02.svg)
+
+[图源](figures/02-tensor-core-and-pipeline-02.mmd)
 
 原理示意。“可以写入”和“可以读取”是两种不同的等待。异步搬运和矩阵计算还需遵守对应操作的完成规则，不能仅凭一次普通块内屏障推断所有异步工作已完成。[CUTLASS 同步与流水线](https://docs.nvidia.com/cutlass/latest/media/docs/cpp/pipeline.html)
 

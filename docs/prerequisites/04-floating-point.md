@@ -45,3 +45,5 @@ abs(结果 - 参考) <= atol + rtol * abs(参考)
 </details>
 
 下一篇：[线程与 GPU 执行](../hardware/execution.md)。
+
+进阶阅读：[低精度与缩放](../../lessons/03-gemm/04-low-precision.md)。

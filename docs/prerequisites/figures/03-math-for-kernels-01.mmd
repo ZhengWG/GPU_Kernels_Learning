@@ -1,0 +1,7 @@
+flowchart TD
+    Q["Q：Lq × D"] --> S["分数 Q × K转置 / sqrt(D)"]
+    K["K：Lk × D"] --> S
+    S --> M["屏蔽不能看的位置"]
+    M --> P["按每一行计算 Softmax"]
+    P --> O["权重 × V：Lq × Dv"]
+    V["V：Lk × Dv"] --> O

@@ -8,8 +8,21 @@
 - 修改前后并排展示，标出变化部分；不要依靠长段文字解释整张图。
 - 必要名称首次出现时给一句白话解释，不自造缩写。
 - 图上注明“原理示意”或“实际测量”。性能图必须来自已保存的数据。
-- 静态图优先使用可维护的 SVG 或 Mermaid；复杂示意保留源文件。
+- GitHub 正文使用静态 SVG 图片，旁边链接 `.mmd` 图源；不依赖在线 Mermaid 渲染。SVG 标签用原生文本，避免依赖 HTML foreignObject。
 - 交互演示可调尺寸、分块和步骤，提供静态配图及文字说明，不依赖 GPU。
 - 性能图标明单位、具体 GPU、输入、数据类型和测量口径，不填写示例性能数字。
 
 建议正文顺序：一句话结论 → 图 → 少量解释 → 对应代码。长推导放进可展开内容。
+
+## 维护静态图
+
+图源和图片位于各章节的 figures/。修改图源后，用 Mermaid 10.9.1 浏览器文件和 Chrome/Chromium 重新生成：
+
+```bash
+python3 tools/render_diagrams.py --mermaid-js /path/to/mermaid.min.js --browser /path/to/chrome
+python3 tools/check_docs.py
+```
+
+这些额外工具仅供维护者绘图，读者阅读和运行 CPU 检查不需要安装。检查脚本确认本地链接、SVG 格式和图源摘要，视觉检查还需查看导出的图片。
+
+固定渲染文件：[mermaid.min.js 10.9.1](https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js)。SHA-256：`61b335a46df05a7ce1c98378f60e5f3e77a7fb608a1056997e8a649304a936d6`。下载放在仓库外，脚本核对摘要；不需要安装 npm 依赖。

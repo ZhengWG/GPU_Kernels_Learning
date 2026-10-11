@@ -1,0 +1,9 @@
+sequenceDiagram
+    participant CPU
+    participant GPU
+    CPU->>GPU: 启动 kernel
+    Note over CPU: 可以继续执行 CPU 代码
+    Note over GPU: 执行线程计算
+    CPU->>GPU: 等待完成
+    GPU-->>CPU: 计算已完成
+    Note over CPU: 此后才可依赖结果完成状态

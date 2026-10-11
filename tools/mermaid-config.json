@@ -1,0 +1,23 @@
+{
+  "theme": "base",
+  "securityLevel": "strict",
+  "htmlLabels": false,
+  "themeVariables": {
+    "fontFamily": "Arial, PingFang SC, Microsoft YaHei, sans-serif",
+    "fontSize": "18px",
+    "primaryColor": "#eef5ff",
+    "primaryTextColor": "#172b4d",
+    "primaryBorderColor": "#5377a8",
+    "lineColor": "#53657d",
+    "secondaryColor": "#e9f7f2",
+    "tertiaryColor": "#fff3df"
+  },
+  "flowchart": {
+    "htmlLabels": false,
+    "curve": "linear",
+    "nodeSpacing": 30,
+    "rankSpacing": 45,
+    "wrappingWidth": 220
+  },
+  "sequence": { "useMaxWidth": true, "wrap": true }
+}
