@@ -49,3 +49,5 @@
 进阶来源：[CuTe Layouts](https://docs.nvidia.com/cutlass/latest/media/docs/cpp/cute/01_layout.html)、[Transformer Engine FP8/FP4](https://docs.nvidia.com/deeplearning/transformer-engine-releases/release-2.13/user-guide/examples/fp8_primer.html)、[RoFormer](https://arxiv.org/abs/2104.09864)、[GQA](https://arxiv.org/abs/2305.13245)。
 
 资源与经典算子深化：[执行配置与资源限制](https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#execution-configuration-optimizations)、[NVIDIA 转置教程](https://developer.nvidia.com/blog/efficient-matrix-transpose-cuda-cc/)、[LayerNorm](https://docs.pytorch.org/docs/2.14/generated/torch.nn.LayerNorm.html)、[RMSNorm](https://docs.pytorch.org/docs/2.14/generated/torch.nn.RMSNorm.html)。本轮核对日期：2026-10-11。
+
+进阶理论来源（2026-10-11 核对）：[PagedAttention](https://arxiv.org/abs/2309.06180)、[PTX 指令规范](https://docs.nvidia.com/cuda/parallel-thread-execution/index.html)、[CUDA 异步搬运](https://docs.nvidia.com/cuda/cuda-programming-guide/04-special-topics/async-copies.html)、[CUTLASS 流水线](https://docs.nvidia.com/cutlass/latest/media/docs/cpp/pipeline.html)、[SM100 功能表](https://docs.nvidia.com/cutlass/latest/media/docs/cpp/blackwell_functionality.html)。教学推导、硬件规则和固定源码事实分别在各章注明。

@@ -1,5 +1,7 @@
 # 实验工具
 
+统一入口：`python3 tools/check_all.py`，使用当前 Python 运行全部无 GPU 检查。各工具的检查边界如下。
+
 已提供 [check_theory.py](check_theory.py)：使用 Python 标准库验证分块 GEMM 和逐块 Attention 的数学结果。
 
 从仓库根目录执行：
@@ -30,3 +32,11 @@ python3 tools/check_classic_operators.py
 ```
 
 检查全部采用固定输入或随机种子。不要用 `python -O` 运行这些教学检查，因为它会禁用断言。
+
+[check_launch_and_schedule.py](check_launch_and_schedule.py)：向量相加的覆盖、尾部、任务分配及 split-K 输出处理。
+
+[check_advanced_attention.py](check_advanced_attention.py)：跨块合并、空段、变长边界、分页寻址、掩码/GQA/固定 dropout 梯度。
+
+[check_pipeline_protocol.py](check_pipeline_protocol.py)：抽象缓冲区交接与错误顺序、TMEM 列预算；不模拟 PTX 或 CUDA 内存可见性。
+
+[check_source_links.py](check_source_links.py)：离线检查案例链接的提交号与路径。若本地有对应上游文件，运行 `python3 tools/check_source_links.py --checkout-root /path/to/checkouts` 进一步核对文件摘要和行号范围；子目录名须为 DeepGEMM、flash-attention、SOLAR、kda、KDA-Pilot。

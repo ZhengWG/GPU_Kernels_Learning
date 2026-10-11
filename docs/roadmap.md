@@ -1,6 +1,6 @@
 # 学习路线
 
-状态：背景、GEMM 与 Attention 理论已有初版，当前没有实际 GPU 环境。优先补理论和 CPU 数学验证，完整 GPU 实验与性能验证后续开展。
+状态：约定范围的理论课程 v1 已补齐，详见 [理论完成清单](theory-completion.md)。当前没有实际 GPU 环境，CUDA 实现与性能验证后续开展。
 
 先读 [背景知识入口](prerequisites/README.md)：C++、张量布局、算子数学、浮点数、线程执行、存储、同步、性能判断与编译流程。来源见 [资料导航](references.md)。
 
@@ -23,7 +23,9 @@
 6. 阅读线程布局、低精度、RoPE、GQA 与反向章节，运行 `python3 tools/check_patterns.py` 和 `python3 tools/check_attention_backward.py`。
 7. 按 [固定版本案例](../case_studies/README.md) 跟踪源码，完成 [无 GPU 综合作业](../lessons/05-capstone/README.md)。
 8. 完成 [资源预算](hardware/resource-budget.md) 与 [经典算子逐步推导](../lessons/02-hardware-and-profiling/README.md)，运行两份配套 CPU 检查。
-9. GPU 可用后再锁定环境、实现并测量。
+9. 阅读进阶 Attention 的变长/分页、跨块合并、掩码与 GQA 反向。
+10. 完成 Hopper/SM100 机制和架构源码阅读题，对照综合作业示例，运行 `python3 tools/check_all.py`。
+11. GPU 可用后再锁定环境、实现并测量。
 
 CPU 检查不能发现 CUDA 读写冲突，也不验证吞吐量；理论完成与 GPU 验证分别记录。
 
@@ -31,6 +33,6 @@ H20 为实际验证主线。B 系列课程独立声明具体型号和验证状�
 
 返回 [项目首页](../README.md)。
 
-## 尚待展开的理论
+## 理论范围与下一阶段
 
-本轮已补资源预算、转置、归一化和融合。理论部分尚未全部完成：变长/分页 KV cache、跨块 Attention 合并、掩码与 GQA 反向，以及 Hopper/B 系列具体异步指令与同步配合，仍需后续章节。
+此前列出的理论缺口已补齐：进阶 Attention、Hopper/SM100 异步交接、架构源码对照，以及入门样章、GEMM 调度和练习答案。各章证据见 [完成清单](theory-completion.md)。下一阶段以 GPU 实现、设备参数核验和实测为主，不把 CPU 检查改标为 GPU 验证。

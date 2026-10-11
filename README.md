@@ -4,7 +4,7 @@
 
 面向会基本 Python、没有写过 GPU 算子、对 C++ 不熟悉的同学。通过图解、完整代码和可复现实验，学习数据如何移动、线程如何分工，以及代码为什么变快。
 
-> 当前状态：已补充背景知识、GEMM / Attention 理论、原理图、自测题和纯 Python 数学检查。当前没有实际 GPU 环境，优先完善理论；完整 CUDA 实验、交互演示和 GPU 实测结果尚未提供。
+> 当前状态：约定范围的理论课程 v1 已补齐，包含图解、练习答案、Python 验证和固定版本源码阅读，见 [完成清单](docs/theory-completion.md)。当前没有实际 GPU 环境；完整 CUDA 实验、交互演示和 GPU 实测结果尚未提供。
 
 ## 学完能做什么
 
@@ -43,24 +43,22 @@
 
 ## 当前没有 GPU，也可以继续学
 
+- [向量相加](lessons/01-cuda-basics/vector-add.md)：从 Python 循环推导线程与边界。
 - [GEMM 分块与流水线](lessons/03-gemm/README.md)：理解复用、Tensor Core 与等待关系。
 - [Attention 逐块计算](lessons/04-attention/README.md)：手算 Softmax 更新和输出累加。
 - [经典算子的计算方式](lessons/02-hardware-and-profiling/operator-patterns.md)：归约、前缀和、归一化与融合。
 - [资源预算](docs/hardware/resource-budget.md)与[经典算子逐步推导](lessons/02-hardware-and-profiling/README.md)：手算优化收益与代价。
 - [固定版本源码阅读](case_studies/README.md)：DeepGEMM、FlashAttention、SOLAR 与 KDA 案例。
+- [进阶 Attention](lessons/04-attention/05-variable-length-and-pages.md)：变长、分页、跨块合并与反向。
+- [Hopper](docs/hardware/hopper-pipeline.md) 与 [SM100](docs/hardware/blackwell-matmul.md)：搬运、计算与存储交接。
 
 从仓库根目录运行，只需 Python 标准库：
 
 ```bash
-python3 tools/check_theory.py
-python3 tools/check_patterns.py
-python3 tools/check_attention_backward.py
-python3 tools/check_resource_budget.py
-python3 tools/check_classic_operators.py
-python3 tools/check_docs.py
+python3 tools/check_all.py
 ```
 
-前五个脚本检查数学、索引和资源估算，最后一个检查文档和图源；均不模拟 GPU，也不输出性能成绩。
+统一入口运行数学、索引、资源、抽象协议、源码链接与文档检查，不执行 GPU 代码或输出性能成绩。各脚本范围见 [工具说明](tools/README.md)。
 
 ## 如何学习一节课
 
@@ -84,7 +82,7 @@ python3 tools/check_docs.py
 | --- | --- | --- |
 | H20 主线 | 基础算子、GEMM、Attention、数据搬运与计算重叠 | 待实现、待实际设备验证 |
 | B 系列扩展 | 对应硬件能力、实现差异与上游案例 | 待选定具体型号、待验证 |
-| 无 GPU 学习 | 图解、自测、Python 数学检查 | 已提供初版；浏览器交互演示待补 |
+| 无 GPU 学习 | 图解、自测、Python 数学检查 | 理论 v1 已提供；浏览器交互演示待补 |
 
 硬件资料将分别记录官方参数和本机实测值，包含具体型号、来源、核验日期与软件环境。见 [硬件入口](docs/hardware/README.md)。
 
@@ -98,7 +96,7 @@ python3 tools/check_docs.py
 
 ## 章节与实验计划
 
-背景讲解已有初版；以下完整 GPU 实验仍在 **规划中**，目录存在不代表代码已经实现。
+理论课程已提供；以下完整 GPU 实验仍在 **规划中**，目录存在不代表代码已经实现。
 
 | 顺序 | 章节 | 核心问题 | 入口 |
 | --- | --- | --- | --- |
@@ -119,7 +117,7 @@ python3 tools/check_docs.py
 
 Python 参考 → 分步计算 → 逐块更新 Softmax → 分块融合 → 线程分工优化 → 现代实现阅读。
 
-首版聚焦前向计算，再加入 causal（只看当前位置及之前的位置）和 GQA（多组查询共享键和值）；后续扩展逐 token 生成、变长输入与反向计算。见 [Attention 实验](kernels/attention/README.md)。
+理论已覆盖前向、causal（只看当前位置及之前的位置）、GQA（多组查询共享键和值）、Decode、变长/分页、跨块合并与反向。GPU 实验仍按从前向到进阶的顺序实施。见 [Attention 实验](kernels/attention/README.md)。
 
 ### 其他经典算子
 
@@ -195,10 +193,12 @@ GPU_Kernels_Learning/
 - [x] 补充 GQA、Decode 和最简 Attention 反向推导。
 - [x] 建立固定版本源码阅读初版与无 GPU 综合作业。
 - [x] 补齐资源预算、转置、归一化与融合的逐步推导和 CPU 验证。
-- [ ] 完成 vector add 图解样章；GPU 可用后补齐 CUDA 验证与计时。
+- [x] 完成 vector add 图解、GEMM 调度、进阶 Attention 与 Hopper/SM100 理论。
+- [x] 补齐源码逐段对照、练习答案与统一 CPU 检查。
+- [ ] GPU 可用后补齐 vector add CUDA 实现、验证与计时。
 - [ ] 在实际 H20 上验证环境，记录设备参数。
 - [ ] 完成转置、归约和 Softmax 基础实验。
-- [ ] 完成 GEMM 优化链与 Attention 前向主线。
-- [ ] 补充经典算子、上游案例和 B 系列扩展。
+- [ ] 完成 GEMM 优化链与 Attention 的 GPU 实验。
+- [ ] 完成经典算子 GPU 实验、上游性能复现和 B 系列设备验证。
 
 参与方式见 [贡献约定](CONTRIBUTING.md)。
